@@ -1,7 +1,7 @@
 package hu.codehunters.messages.controller;
 
 import hu.codehunters.messages.model.Message;
-import hu.codehunters.messages.model.MessagesContainer;
+import hu.codehunters.messages.repository.MessagesContainer;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,23 +16,17 @@ public class MessageController {
 
     MessagesContainer messages = new MessagesContainer();
 
-    /**
-     * adds a new message
-     * @return
-     */
     @PostMapping(value = "/messages")
-    public ResponseEntity addMessageToList(@RequestBody Message message) {
+    public ResponseEntity<Void> addMessageToList(@RequestBody Message message) {
 
         messages.addMessage(message);
-        return new ResponseEntity(HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    /**
-     * returns the list of the added messages
-     * @return
-     */
+
     @GetMapping("/messages")
-    public List<Message> showMessages() {
-        return messages.getMessages();
+    public ResponseEntity<List<Message>> showMessages() {
+
+        return ResponseEntity.ok(messages.getMessages());
     }
 }
