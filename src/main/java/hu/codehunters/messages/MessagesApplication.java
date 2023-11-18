@@ -3,11 +3,13 @@ package hu.codehunters.messages;
 import com.sun.net.httpserver.HttpServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 
 @SpringBootApplication
+@EnableFeignClients
 public class MessagesApplication {
 
 	public static void main(String[] args) throws Exception {

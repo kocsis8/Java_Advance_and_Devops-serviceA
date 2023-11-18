@@ -1,28 +1,25 @@
 package hu.codehunters.messages.model;
 
+import lombok.Getter;
+
 import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class MassagesInLastMinuteDecorator {
+@Getter
+public class MessagesInLastMinuteDecorator {
 
     private static final int MINUTE_IN_SEC = 60;
 
     private static final String NON_ALPHAMERIC_CHARACTERS_REGEX = "[^a-zA-Z\\d:]";
-
-
-    public List<Message> getMessagesInLastMinute() {
-        return messagesInLastMinute;
-    }
-
     private final List<Message> messagesInLastMinute;
 
-    public MassagesInLastMinuteDecorator(List<Message> messages, Instant from) {
+    public MessagesInLastMinuteDecorator(List<Message> messages, Instant from) {
         this.messagesInLastMinute = messages
                 .stream()
-                .filter(message -> message.getCreatedAt().plusMillis(MINUTE_IN_SEC).isAfter(from))
+                .filter(message -> message.getCreatedAt().plusSeconds(MINUTE_IN_SEC).isAfter(from))
                 .collect(Collectors.toList());
     }
 
@@ -36,5 +33,6 @@ public class MassagesInLastMinuteDecorator {
                 .collect(Collectors.toList());
     }
 
-    public int size(){return messagesInLastMinute.size();}
+    public int size(){
+        return messagesInLastMinute.size();}
 }

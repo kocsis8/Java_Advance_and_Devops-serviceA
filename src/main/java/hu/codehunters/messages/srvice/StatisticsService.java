@@ -1,7 +1,7 @@
 package hu.codehunters.messages.srvice;
 
 import hu.codehunters.messages.model.CountedWord;
-import hu.codehunters.messages.model.MassagesInLastMinuteDecorator;
+import hu.codehunters.messages.model.MessagesInLastMinuteDecorator;
 import hu.codehunters.messages.model.Statistics;
 import hu.codehunters.messages.repository.MessagesContainer;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class StatisticsService {
     }
 
     public Statistics calculateStatistics(Instant from) {
-        MassagesInLastMinuteDecorator messages = new MassagesInLastMinuteDecorator(messagesContainer.getMessages(),from);
+        MessagesInLastMinuteDecorator messages = new MessagesInLastMinuteDecorator(messagesContainer.getMessages(),from);
 
         int numberOfMessages = messages.size();
 

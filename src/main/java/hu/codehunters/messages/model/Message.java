@@ -17,6 +17,12 @@ public class Message {
         this.createdAt = Instant.now();
     }
 
+
+    public Message(String message,Instant instant) {
+        this.message = message;
+        this.createdAt = instant;
+    }
+
     public String getMessage() {
         return message;
     }
