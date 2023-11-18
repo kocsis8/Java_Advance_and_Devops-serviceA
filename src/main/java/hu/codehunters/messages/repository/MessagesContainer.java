@@ -1,6 +1,9 @@
-package hu.codehunters.messages.model;
+package hu.codehunters.messages.repository;
+
+import hu.codehunters.messages.model.Message;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -13,6 +16,6 @@ public class MessagesContainer {
     }
 
     public List<Message> getMessages() {
-        return messages;
+        return Collections.unmodifiableList(messages);
     }
 }
